@@ -8,12 +8,25 @@
 
 import UIKit
 
+enum typeCells {
+    case rectangle
+    case circle
+}
+
+struct sectionMovies {
+    let title:String
+    let totalMovies:Int
+    let type:typeCells
+    let sizeMovies:CGSize
+}
+
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var elements:[Int] = []
     let cellIdentifier = "cell"
+    let dataCollectionView:[sectionMovies] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
