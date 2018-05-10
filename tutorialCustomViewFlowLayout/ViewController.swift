@@ -21,18 +21,19 @@ struct sectionMovies {
 }
 
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate {
     
     var mainTable:UITableView!
     
     var elements:[Int] = []
     let cellIdentifier = "cell"
-    var dataCollectionView:[sectionMovies]!
-    let totalSections = 6
+    let cellIdentifierTable = "cellTable"
+    var dataTableview:[sectionMovies] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        generateDataMovies()
         
         setUtpTable()
         
@@ -49,7 +50,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             elements.append(index)
         }
         
-        collectionView.register( UICollectionViewCell.self , forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.register( UICollectionViewCell.self , forCellWithReuseIdentifier: cellIdentifierTable)
         
         
     }
@@ -61,6 +62,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         mainTable.backgroundColor = .red
         mainTable.delegate = self
         mainTable.dataSource = self
+        mainTable.register( SectionTableCell.self , forCellReuseIdentifier: cellIdentifierTable)
         
         self.view.addSubview(mainTable)
         
@@ -82,26 +84,27 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let trending = sectionMovies(title: "Tendencias", totalMovies: 10, type: .rectangle, sizeMovies: defaultSize )
         let hollywood = sectionMovies(title: "Hollywood", totalMovies: 10, type: .rectangle, sizeMovies: defaultSize )
         
-        dataCollectionView.append(portraint)
-        dataCollectionView.append(popular)
-        dataCollectionView.append(thriller)
-        dataCollectionView.append(trending)
-        dataCollectionView.append(hollywood)
+        dataTableview.append(portraint)
+        dataTableview.append(popular)
+        dataTableview.append(thriller)
+        dataTableview.append(trending)
+        dataTableview.append(hollywood)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 1
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return totalSections
+        return dataTableview.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifierTable, for: indexPath)
         return cell
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         

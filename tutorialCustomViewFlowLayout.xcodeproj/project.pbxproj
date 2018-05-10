@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10B3E08220A49AC20070CBA0 /* SectionTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B3E08120A49AC20070CBA0 /* SectionTableCell.swift */; };
 		317F4C2220967E4F00407D2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317F4C2120967E4F00407D2E /* AppDelegate.swift */; };
 		317F4C2420967E4F00407D2E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317F4C2320967E4F00407D2E /* ViewController.swift */; };
 		317F4C2720967E4F00407D2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 317F4C2520967E4F00407D2E /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10B3E08120A49AC20070CBA0 /* SectionTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableCell.swift; sourceTree = "<group>"; };
 		317F4C1E20967E4F00407D2E /* tutorialCustomViewFlowLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tutorialCustomViewFlowLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		317F4C2120967E4F00407D2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		317F4C2320967E4F00407D2E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				317F4C3020967E4F00407D2E /* Info.plist */,
 				317F4C2820967E4F00407D2E /* tutorialCustomViewFlowLayout.xcdatamodeld */,
 				317F4C5220967F8A00407D2E /* CustomFlowLayout.swift */,
+				10B3E08120A49AC20070CBA0 /* SectionTableCell.swift */,
 			);
 			path = tutorialCustomViewFlowLayout;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				317F4C2420967E4F00407D2E /* ViewController.swift in Sources */,
 				317F4C2A20967E4F00407D2E /* tutorialCustomViewFlowLayout.xcdatamodeld in Sources */,
 				317F4C5320967F8A00407D2E /* CustomFlowLayout.swift in Sources */,
+				10B3E08220A49AC20070CBA0 /* SectionTableCell.swift in Sources */,
 				317F4C2220967E4F00407D2E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
