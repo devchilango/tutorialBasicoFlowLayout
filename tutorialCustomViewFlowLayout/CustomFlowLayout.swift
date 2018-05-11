@@ -10,7 +10,7 @@ import UIKit
 
 class CustomFlowLayout: UICollectionViewFlowLayout {
 
-    let sizeItem = 100
+    var sizeItem = CGSize.zero
     var sizeCollection:CGSize!
     var totalItems:Int = 0
     let space:Int = 1
@@ -18,7 +18,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     override func prepare() {
         
         totalItems = self.collectionView?.numberOfItems(inSection: 0) ?? 0
-        sizeCollection = CGSize(width: totalItems * sizeItem , height: sizeItem)
+        sizeCollection = CGSize(width: totalItems * Int(sizeItem.width), height: Int(sizeItem.height) )
     }
     
     override var collectionViewContentSize: CGSize{
@@ -35,10 +35,10 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
             let indexPath = IndexPath(item: i, section: 0)
             if let attribute = self.layoutAttributesForItem(at: indexPath){
                 
-                attribute.frame = CGRect(x: positionStart, y: 0, width: sizeItem, height: sizeItem);
+                attribute.frame = CGRect(x: positionStart, y: 0, width: Int(sizeItem.width), height: Int(sizeItem.height) );
                 attributes.append(attribute)
                 
-                positionStart += sizeItem + space
+                positionStart += Int(sizeItem.width)  + space
             }
         }
         

@@ -63,6 +63,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         mainTable.delegate = self
         mainTable.dataSource = self
         mainTable.register( SectionTableCell.self , forCellReuseIdentifier: cellIdentifierTable)
+        mainTable.separatorStyle = .none //this delete de space beetween tableviewCell, to fit well the collectionviews height and its contentsize
         
         self.view.addSubview(mainTable)
         
@@ -92,24 +93,39 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return dataTableview.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return dataTableview.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifierTable, for: indexPath)
+        let sectionMovie:sectionMovies = dataTableview[ indexPath.row ] as sectionMovies!
+        
+        let cell:SectionTableCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifierTable, for: indexPath) as! SectionTableCell
+        cell.collectionMovies.delegate = self
+        cell.collectionMovies.dataSource = self
+        cell.collectionMovies.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        cell.collectionMovies.tag = indexPath.row
+        cell.collectionMovies.showsHorizontalScrollIndicator = false
+        cell.setSizeItem(size: sectionMovie.sizeMovies)
+        
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let sectionMovie:sectionMovies = dataTableview[ indexPath.row ] as sectionMovies!
+        return sectionMovie.sizeMovies.height
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
-        cell.backgroundColor = .red
+        cell.backgroundColor = .white
         
         return cell
     }
@@ -119,7 +135,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return elements.count
+        let sectionMovie:sectionMovies = dataTableview[ collectionView.tag ] as sectionMovies!
+        return sectionMovie.totalMovies
     }
     
     
