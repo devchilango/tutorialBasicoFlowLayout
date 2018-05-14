@@ -15,6 +15,7 @@ enum typeCells {
 
 struct sectionMovies {
     let title:String
+    let titleSize:Int
     let totalMovies:Int
     let type:typeCells
     let sizeMovies:CGSize
@@ -36,22 +37,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         generateDataMovies()
         
         setUtpTable()
-        
-        
-        
-        let layout = CustomFlowLayout()
-        let rectCollection = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 100)
-        let collectionView = UICollectionView(frame: rectCollection, collectionViewLayout: layout)
-        
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
-        for index in 1...10{
-            elements.append(index)
-        }
-        
-        collectionView.register( UICollectionViewCell.self , forCellWithReuseIdentifier: cellIdentifierTable)
-        
         
     }
     
@@ -79,11 +64,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         let defaultSize = CGSize(width: 75, height: 100)
         
-        let portraint = sectionMovies(title: "", totalMovies: 1, type: .rectangle, sizeMovies: CGSize(width: UIScreen.main.bounds.size.width, height: 400) )
-        let popular = sectionMovies(title: "Populares", totalMovies: 10, type: .rectangle, sizeMovies: defaultSize )
-        let thriller = sectionMovies(title: "Avances", totalMovies: 10, type: .circle, sizeMovies: defaultSize )
-        let trending = sectionMovies(title: "Tendencias", totalMovies: 10, type: .rectangle, sizeMovies: defaultSize )
-        let hollywood = sectionMovies(title: "Hollywood", totalMovies: 10, type: .rectangle, sizeMovies: defaultSize )
+        let portraint = sectionMovies(title: "", titleSize: 0, totalMovies: 1, type: .rectangle, sizeMovies: CGSize(width: UIScreen.main.bounds.size.width, height: 250) )
+        let popular = sectionMovies(title: "Populares", titleSize: 30, totalMovies: 10, type: .rectangle, sizeMovies: defaultSize )
+        let thriller = sectionMovies(title: "Avances", titleSize: 30, totalMovies: 10, type: .circle, sizeMovies: defaultSize )
+        let trending = sectionMovies(title: "Tendencias", titleSize: 30, totalMovies: 10, type: .rectangle, sizeMovies: defaultSize )
+        let hollywood = sectionMovies(title: "Hollywood", titleSize: 30, totalMovies: 10, type: .rectangle, sizeMovies: defaultSize )
         
         dataTableview.append(portraint)
         dataTableview.append(popular)
@@ -110,15 +95,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.collectionMovies.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
         cell.collectionMovies.tag = indexPath.row
         cell.collectionMovies.showsHorizontalScrollIndicator = false
-        cell.setSizeItem(size: sectionMovie.sizeMovies)
-        
+        cell.setSizes(size: sectionMovie.sizeMovies, sizeHeader: sectionMovie.titleSize )
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let sectionMovie:sectionMovies = dataTableview[ indexPath.row ] as sectionMovies!
-        return sectionMovie.sizeMovies.height
+        return sectionMovie.sizeMovies.height + CGFloat(sectionMovie.titleSize)
     }
     
     
