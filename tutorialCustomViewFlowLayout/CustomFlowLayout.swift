@@ -13,12 +13,12 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     var sizeItem = CGSize.zero
     var sizeCollection:CGSize!
     var totalItems:Int = 0
-    let space:Int = 1
+    var space:Int = 0
     
     override func prepare() {
         
         totalItems = self.collectionView?.numberOfItems(inSection: 0) ?? 0
-        sizeCollection = CGSize(width: totalItems * Int(sizeItem.width), height: Int(sizeItem.height) )
+        sizeCollection = CGSize(width: totalItems * (Int(sizeItem.width) + space), height: Int(sizeItem.height) )
     }
     
     override var collectionViewContentSize: CGSize{

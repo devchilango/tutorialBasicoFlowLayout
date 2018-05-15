@@ -24,11 +24,11 @@ class SectionTableCell: UITableViewCell {
         titleView = UIView()
         titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         titleView.translatesAutoresizingMaskIntoConstraints = false
-        titleView.backgroundColor = .gray
+        titleView.backgroundColor = UIColor.init(red: 220/255, green: 220/255, blue: 220/255, alpha: 1.0)
         
         collectionMovies = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionMovies.translatesAutoresizingMaskIntoConstraints = false
-        collectionMovies.backgroundColor = .blue
+        collectionMovies.backgroundColor = UIColor.init(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
         
         self.contentView.addSubview(titleView)
         self.contentView.addSubview(collectionMovies)
@@ -38,8 +38,9 @@ class SectionTableCell: UITableViewCell {
         
     }
     
-    func setSizes( size:CGSize, sizeHeader:Int ){
+    func setSizes( size:CGSize, sizeHeader:Int, space:Int ){
         layout.sizeItem = size
+        layout.space = space
         sizetitle = sizeHeader
         collectionMovies.collectionViewLayout.invalidateLayout()
         setConstraints()

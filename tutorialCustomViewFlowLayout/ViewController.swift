@@ -19,6 +19,7 @@ struct sectionMovies {
     let totalMovies:Int
     let type:typeCells
     let sizeMovies:CGSize
+    let space:Int
 }
 
 
@@ -49,6 +50,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         mainTable.dataSource = self
         mainTable.register( SectionTableCell.self , forCellReuseIdentifier: cellIdentifierTable)
         mainTable.separatorStyle = .none //this delete de space beetween tableviewCell, to fit well the collectionviews height and its contentsize
+        mainTable.allowsSelection = false
         
         self.view.addSubview(mainTable)
         
@@ -64,11 +66,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         let defaultSize = CGSize(width: 75, height: 100)
         
-        let portraint = sectionMovies(title: "", titleSize: 0, totalMovies: 1, type: .rectangle, sizeMovies: CGSize(width: UIScreen.main.bounds.size.width, height: 250) )
-        let popular = sectionMovies(title: "Populares", titleSize: 30, totalMovies: 10, type: .rectangle, sizeMovies: defaultSize )
-        let thriller = sectionMovies(title: "Avances", titleSize: 30, totalMovies: 10, type: .circle, sizeMovies: defaultSize )
-        let trending = sectionMovies(title: "Tendencias", titleSize: 30, totalMovies: 10, type: .rectangle, sizeMovies: defaultSize )
-        let hollywood = sectionMovies(title: "Hollywood", titleSize: 30, totalMovies: 10, type: .rectangle, sizeMovies: defaultSize )
+        let portraint = sectionMovies(title: "", titleSize: 0, totalMovies: 1, type: .rectangle, sizeMovies: CGSize(width: UIScreen.main.bounds.size.width, height: 250), space:0 )
+        let popular = sectionMovies(title: "Populares", titleSize: 30, totalMovies: 10, type: .rectangle, sizeMovies: defaultSize, space:10 )
+        let thriller = sectionMovies(title: "Avances", titleSize: 30, totalMovies: 10, type: .circle, sizeMovies: defaultSize, space:10 )
+        let trending = sectionMovies(title: "Tendencias", titleSize: 30, totalMovies: 10, type: .rectangle, sizeMovies: defaultSize, space:10 )
+        let hollywood = sectionMovies(title: "Hollywood", titleSize: 30, totalMovies: 10, type: .rectangle, sizeMovies: defaultSize, space:10 )
         
         dataTableview.append(portraint)
         dataTableview.append(popular)
@@ -95,7 +97,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.collectionMovies.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
         cell.collectionMovies.tag = indexPath.row
         cell.collectionMovies.showsHorizontalScrollIndicator = false
-        cell.setSizes(size: sectionMovie.sizeMovies, sizeHeader: sectionMovie.titleSize )
+        cell.setSizes(size: sectionMovie.sizeMovies, sizeHeader: sectionMovie.titleSize, space: sectionMovie.space  )
         
         return cell
     }
