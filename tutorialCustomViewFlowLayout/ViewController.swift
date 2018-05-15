@@ -45,7 +45,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         mainTable = UITableView()
         mainTable.translatesAutoresizingMaskIntoConstraints = false
-        mainTable.backgroundColor = .red
+        mainTable.backgroundColor = .gray
         mainTable.delegate = self
         mainTable.dataSource = self
         mainTable.register( SectionTableCell.self , forCellReuseIdentifier: cellIdentifierTable)
